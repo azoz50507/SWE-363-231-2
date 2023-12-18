@@ -35,6 +35,9 @@
         <div class="loader"></div>
     </div>
 
+    <!-- Dynamic Posts Section -->
+    <section id="dynamic-posts"></section>
+
     <footer>
         <p>&copy; 2023 Al-Nadria Farms and Nurseries</p>
         <ul>
@@ -47,14 +50,79 @@
             <a href="mailto:fhdkbeer@gmail.com">fhdkbeer@gmail.com</a>
         </address>
     </footer>
+
+    <!-- Help Popup -->
+    <div id="help-popup" style="display: none;">
+        <p>Use Arrow keys to navigate through the menu, Enter to select, Tab to close this help popup, and '?' to open it again.</p>
+    </div>
+
     <script>
-        // JavaScript to hide loader and show content after 2 seconds
+        const posts = [
+    {
+        src: "https://email.agritecture.com/hubfs/Imported_Blog_Media/badia%20farms-1.png",
+        date: new Date("2023-10-02T00:00:00.000Z"),
+        title: "Enhancing Agricultural Practices at Al-Nadria Farms",
+        brief: "Discover innovative approaches and best practices for agricultural cultivation at Al-Nadria farms. This article provides valuable insights into the cultivation of various vegetables and fruits, along with sustainable and eco-friendly farming techniques.",
+        link: "#",
+        tags: ["Agriculture", "Farming", "Innovation"]
+    },
+];
+
+        function addPostsToPage() {
+            const dynamicPostsSection = document.getElementById("dynamic-posts");
+
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("post");
+
+                postElement.innerHTML = `
+                    <img src="${post.src}" alt="${post.title}">
+                    <h2>${post.title}</h2>
+                    <p>${post.brief}</p>
+                    <span>Date: ${post.date.toDateString()}</span>
+                    <a href="${post.link}">Read More</a>
+                    <div>Tags: ${post.tags.join(", ")}</div>
+                `;
+
+                dynamicPostsSection.appendChild(postElement);
+            });
+        }
+
+        // Call the function to add posts when the content is loaded
         document.addEventListener("DOMContentLoaded", function () {
+            addPostsToPage();
             setTimeout(function () {
                 document.querySelector(".loader-container").style.display = "none";
                 document.body.style.overflow = "visible"; // Show the content
             }, 500);
         });
+
+        // JavaScript to hide loader and show content after 2 seconds
+        // Keyboard navigation and help popup
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                // Navigate through links in the navigation menu
+                let navLinks = document.querySelectorAll("nav ul li a");
+                let currentIndex = Array.from(navLinks).findIndex(link => link === document.activeElement);
+                let nextIndex = event.key === "ArrowDown" ? (currentIndex + 1) % navLinks.length : (currentIndex - 1 + navLinks.length) % navLinks.length;
+                navLinks[nextIndex].focus();
+                event.preventDefault();
+            } else if (event.key === "Enter") {
+                // Trigger click on the focused link
+                document.activeElement.click();
+            } else if (event.key === "Tab") {
+                // Close the help popup when Tab is pressed
+                closePopup();
+            } else if (event.key === "?") {
+                // Show the help popup when '?' is pressed
+                document.getElementById("help-popup").style.display = "block";
+            }
+        });
+
+        // Function to close the help popup
+        function closePopup() {
+            document.getElementById("help-popup").style.display = "none";
+        }
     </script>
 </body>
 
