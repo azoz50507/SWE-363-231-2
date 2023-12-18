@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="Al-Nadria farms, nurseries, agriculture, Abha, Rufaida, vegetables, fruits, fish farming, Nile tilapia, ornamental plants, trees">
     <meta name="author" content="Abdulaziz">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
@@ -29,7 +29,11 @@
             <li><a href="contacts.html">Contacts</a></li>
             <li><a href="proposal_form.html">Submit a Proposal</a></li>
         </ul>
+        <div class="hamburger-icon">&#9776;</div>
     </nav>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
 
     <footer>
         <p>&copy; 2023 Al-Nadria Farms and Nurseries</p>
@@ -43,6 +47,15 @@
             <a href="mailto:fhdkbeer@gmail.com">fhdkbeer@gmail.com</a>
         </address>
     </footer>
+    <script>
+        // JavaScript to hide loader and show content after 2 seconds
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                document.querySelector(".loader-container").style.display = "none";
+                document.body.style.overflow = "visible"; // Show the content
+            }, 500);
+        });
+    </script>
 </body>
 
 </html>

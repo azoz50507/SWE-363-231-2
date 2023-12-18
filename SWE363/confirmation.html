@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Confirmation</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
@@ -29,6 +29,15 @@
             <a href="mailto:fhdkbeer@gmail.com">fhdkbeer@gmail.com</a>
         </address>
     </footer>
+    <script>
+        // JavaScript to hide loader and show content after 2 seconds
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                document.querySelector(".loader-container").style.display = "none";
+                document.body.style.overflow = "visible"; // Show the content
+            }, 2000);
+        });
+    </script>
 </body>
 
 </html>
