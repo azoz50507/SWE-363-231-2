@@ -1,36 +1,27 @@
-const posts = [
-    {
-        src: "https://email.agritecture.com/hubfs/Imported_Blog_Media/badia%20farms-1.png",
-        date: new Date("2023-10-02T00:00:00.000Z"),
-        title: "Enhancing Agricultural Practices at Al-Nadria Farms",
-        brief: "Discover innovative approaches and best practices for agricultural cultivation at Al-Nadria farms. This article provides valuable insights into the cultivation of various vegetables and fruits, along with sustainable and eco-friendly farming techniques.",
-        link: "#",
-        tags: ["Agriculture", "Farming", "Innovation"]
-    },
-];
-
-function addPostsToPage() {
-    const dynamicPostsSection = document.getElementById("dynamic-posts");
-
-    posts.forEach(post => {
-        const postElement = document.createElement("div");
-        postElement.classList.add("post");
-
-        postElement.innerHTML = `
-            <img src="${post.src}" alt="${post.title}">
-            <h2>${post.title}</h2>
-            <p>${post.brief}</p>
-            <span>Date: ${post.date.toDateString()}</span>
-            <a href="${post.link}">Read More</a>
-            <div>Tags: ${post.tags.join(", ")}</div>
-        `;
-
-        dynamicPostsSection.appendChild(postElement);
-    });
+class FarmProduct {
+    constructor(src, date, title, brief, link, tags) {
+        this.src = src;
+        this.date = new Date(date);
+        this.title = title;
+        this.brief = brief;
+        this.link = link;
+        this.tags = tags;
+    }
 }
 
-// Function to fetch COVID-19 data and display it
-function fetchCovidData() {
+const posts = [
+    new FarmProduct(
+        "https://email.agritecture.com/hubfs/Imported_Blog_Media/badia%20farms-1.png",
+        "2023-10-02T00:00:00.000Z",
+        "Enhancing Agricultural Practices at Al-Nadria Farms",
+        "Discover innovative approaches and best practices for agricultural cultivation at Al-Nadria farms. This article provides valuable insights into the cultivation of various vegetables and fruits, along with sustainable and eco-friendly farming techniques.",
+        "#",
+        ["Agriculture", "Farming", "Innovation"]
+    ),
+];
+
+// Using function expressions
+const fetchCovidData = function () {
     fetch("https://coronavirus.m.pipedream.net/")
         .then(response => response.json())
         .then(data => {
@@ -51,7 +42,35 @@ function fetchCovidData() {
         .catch(error => {
             console.error("Error fetching COVID-19 data:", error);
         });
+};
+
+// Using nested functions
+function addPostsToPage() {
+    function createPostElement(post) {
+        const postElement = document.createElement("div");
+        postElement.classList.add("post");
+
+        postElement.innerHTML = `
+            <img src="${post.src}" alt="${post.title}">
+            <h2>${post.title}</h2>
+            <p>${post.brief}</p>
+            <span>Date: ${post.date.toDateString()}</span>
+            <a href="${post.link}">Read More</a>
+            <div>Tags: ${post.tags.join(", ")}</div>
+        `;
+
+        return postElement;
+    }
+
+    const dynamicPostsSection = document.getElementById("dynamic-posts");
+
+    posts.map(post => {
+        const postElement = createPostElement(post);
+        dynamicPostsSection.appendChild(postElement);
+    });
 }
+
+// ... (rest of your code)
 
 // Call the functions when the content is loaded
 document.addEventListener("DOMContentLoaded", function () {
