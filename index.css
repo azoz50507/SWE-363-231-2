@@ -252,3 +252,25 @@ nav:hover ul {
 .post a:hover {
     background-color: #45a049;
 }
+/* COVID-19 Stats Section */
+#covid-stats {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+#covid-stats h2 {
+    color: #4CAF50;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+#covid-stats-content {
+    color: #fff;
+    font-size: 1.2em;
+}
+
+#covid-stats-content p {
+    margin: 10px 0;
+}
