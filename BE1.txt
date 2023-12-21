@@ -1,0 +1,11 @@
+Exercise1:
+https://twitter.com/
+
+- 104.244.42.193:443
+- 26 request
+- eventsource, fetch, xhr, stylesheet
+- shadow.css
+- 251.8 ms
+
+Exercise 3:
+.online Domain
